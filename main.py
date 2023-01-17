@@ -26,13 +26,13 @@ btn_year = driver.find_element('id', 'botaosim').click()
 
 btn_loto = driver.find_element('class name', 'titulo-mega-sena').click()
 
-numbers = ["05","03", "04", "15", "20", "08"]
+numbers = [["05","03", "04", "15", "20", "08"],["15","16","26","30","31","32"], ["01","04","20","34","35","40"]]
 
 div_element = driver.find_element('class name', 'coluna-aposte')
-#driver.execute_script("arguments[0].scrollIntoView();", div_element)
 #time.sleep(1)
-for x in numbers:
-    driver.find_element('xpath', "//*[@id='n%s']" %x ).click()
-
-
-driver.find_element('id', 'colocarnocarrinho').click()
+for item in numbers:
+    for x in item:
+        driver.find_element('xpath', "//*[@id='n%s']" %x ).click()
+    driver.find_element('id', 'colocarnocarrinho').click()
+    time.sleep(1)
+    driver.execute_script("arguments[0].scrollIntoView();", div_element)
